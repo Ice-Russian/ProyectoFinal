@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with LeadMark landing page.">
+    <meta name="Simon Recofsky" content="FinalCoderHouse">
+    <title>{%block titulo%}{% endblock %}</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="{% static 'admin_user\vendors\themify-icons\css\themify-icons.css' %}">
+    <!-- Bootstrap + LeadMark main styles -->
+	<link rel="stylesheet" href="{% static 'admin_user/css/styles.css' %}">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top" data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">                     
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cursos' %}">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'estudiantes' %}">Estudiantes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profesores' %}">Profesores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'entregables' %}">Entregables</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#signup" class="ml-4 nav-link btn btn-primary btn-sm rounded">Iniciar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Second Navigation -->
+
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h1 class="subtitle">Bienvenido a mi proyecto CoderHouse</h1>
+            <h1 class="title">Python</h1>  
+        </div>  
+        <div class="shape">
+            <svg viewBox="0 0 1500 200">
+                <path d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z"/>
+            </svg>
+        </div>  
+        <div class="mouse-icon"><div class="wheel"></div></div>
+    </header>
+    <!-- End Of Page Header -->
+
+    <!-- Service Section -->
+    {% block main %}
+
+    {% endblock main %} 
+    <!-- End OF Service Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="section has-img-bg pb-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 my-3">
+                    
+                    {% comment %}
+                    <h6 class="mb-0">Telefono</h6>
+                    <p class="mb-4">+ 123-456-7890</p> 
+                    {% endcomment %}
+
+                    <h6 class="mb-0">Alumno:</h6>
+                    <p class="mb-4">Simon Recofsky</p>
+
+                    <h6 class="mb-0">Address</h6>
+                    <p class="mb-4">La plata city
+                    </p>
+
+                    <h6 class="mb-0">Email</h6>
+                    <p class="mb-0">russorecof@gmail.com</p>
+                    <p></p>
+                </div>
+            </div>
+            <!-- Page Footer -->
+            <footer class="mt-5 py-4 border-top border-secondary">
+                <p class="mb-0 small">&copy; <script>document.write(new Date().getFullYear())</script>, Simon R. Created<p>All rights reserved </p>     
+            </footer>
+            <!-- End of Page Footer -->  
+        </div>
+    </section>
+	
+	<!-- core  -->
+    <script src="{% static 'admin_user/vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'admin_user\vendors\bootstrap\bootstrap.bundle.js' %}"></script>
+
+    <!-- bootstrap 3 affix -->
+	<script src="{% static 'admin_user\vendors\bootstrap\bootstrap.affix.js' %}"></script>
+
+    <!-- Isotope -->
+    <script src="{% static 'admin_user\vendors\isotope\isotope.pkgd.js' %}"></script>
+
+    <!-- js -->
+    <script src="{% static 'admin_user\js\JavaScrip.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+{% extends 'admin_user/base.html' %}
+
+{%block titulo%} CoderHouse | Entregables {%endblock%}
+
+{% block main %}
+<section  id="service" class="section pt-0">
+    <div class="container">
+        <h6 class="section-title text-center">Entragables</h6>
+        <h6 class="section-subtitle text-center mb-5 pb-3">Adjunte aqui su trabajo!</h6>
+    </div>
+</section>
+<table class="table table-borderless v-align-center">
+    <tbody>
+        </section>
+            <tr>
+                <h3 class="section-title text-center">Entregas</h3>
+                <td>
+                    <form action="" method="POST">
+                            {% csrf_token %}
+                        
+                        <table class="section-title text-center">
+                            {{ formEntregables.as_table }}
+                        </table>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="row m-2">
+                                        <button class="btn btn-primary rounded" >Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </td>
+            </tr>
+    </tbody>
+</table>   
+
+
+
+
+
+
+
+{% comment %}   !Proximamente.
+                    !En desarrollo... {% comment %}
+
+
+
+    
+    <section id="portfolio" class="section portfolio-section">
+        <div class="container">
+            <h6 class="section-title text-center">Modificaciones</h6>
+            <div class="filters">
+                <a class="nav-link" href="#" data-filter=".add" >
+                    Nuevo
+                </a>
+                <a class="nav-link" href="#" data-filter=".search">
+                    Buscar
+                </a>
+                <a class="nav-link" href="#" data-filter=".delete">
+                    Eliminar
+                </a>
+                <a class="nav-link" href="#" data-filter=".actualice">
+                    Actualizar
+                </a>
+            </div>
+            <div class="portfolio-container"> 
+                <div class="col-md-6 col-lg-4 add">
+                    <div class="portfolio-item">
+                        {% block agregar %}
+                        {% endblock %}      
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-container"> 
+                <div class="col-md-6 col-lg-4 search">
+                    <div class="portfolio-item">
+                        {% block buscar %}
+                        {% endblock %} 
+                    </div>
+                </div>                                                     
+            </div>   
+            <div class="portfolio-container"> 
+                <div class="col-md-6 col-lg-4 delete">
+                    <div class="portfolio-item">
+                        <p>Proximamente</p>
+                        {% block eliminar %}
+                        {% endblock %}      
+                    </div>
+                </div>                                                     
+            </div>   
+            <div class="portfolio-container"> 
+                <div class="col-md-6 col-lg-4 actualice">
+                    <div class="portfolio-item">
+                        <p>Proximamente</p>
+                        {% block actualizar %}
+                        {% endblock %} 
+                    </div>
+                </div>                                                     
+            </div>   
+        </div>            
+    </section>
+
+{% endcomment %}
+
+{% endblock %}

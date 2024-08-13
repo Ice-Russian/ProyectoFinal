@@ -1,0 +1,39 @@
+{% extends 'admin_user/base.html' %}
+
+{% load static%}
+
+{%block titulo%}CoderHouse | Cursos{%endblock%}
+
+
+{% block main %}
+
+
+<section  id="service" class="section pt-0">
+    <div class="container">
+        <h6 class="section-title text-center">Cursos</h6>
+        <h6 class="section-subtitle text-center mb-5 pb-3">Agregue un curso a nuestra lista!</h6>
+    </div>
+</section>
+
+<section id="portfolio" class="section portfolio-section">
+    <div class="container">
+        <h6 class="section-title text-center">Modificaciones</h6>
+        <div>
+            <a class="nav-link" href="{% url 'agregarcursos' %}" data-filter=".add" >
+                Nuevo
+            </a>
+            <a class="nav-link" href="{% url 'buscarcursos' %}" data-filter=".search">
+                Buscar
+            </a>
+            <a class="nav-link" href="#" data-filter=".delete">
+                <p class="text-muted">Eliminar</p>
+            </a>
+            <a class="nav-link" href="#" data-filter=".actualice">
+                <p class="text-muted">Actualizar</p>
+            </a>
+        </div> 
+    </div>
+</section>  
+
+
+{% endblock %}
