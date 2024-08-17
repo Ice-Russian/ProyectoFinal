@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}Detalle del Blog{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <h2>{{ blog.title }}</h2>
+    <h4>{{ blog.subtitle }}</h4>
+    <p>{{ blog.body }}</p>
+    <p><strong>Autor:</strong> {{ blog.author }}</p>
+    <p><strong>Fecha:</strong> {{ blog.date_created }}</p>
+    <img src="{{ blog.image.url }}" class="img-fluid" alt="{{ blog.title }}">
+    <a href="{% url 'blog_list' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}

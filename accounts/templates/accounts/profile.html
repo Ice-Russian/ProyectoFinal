@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block main %}
+
+<header class="header header-mini"> 
+    <div class="header-title">Bienvenido {{ user_profile.user.username }}</div> 
+    {% if user_profile.profile_image %}
+        <div class="mr-4">
+            <img src="{{ user_profile.profile_image.url }}" alt="Profile Image" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
+        </div>
+    {% else %}
+        <div class="mr-4">
+            <img src="{% static 'admin_user/assets/imgs/default-avatar.jpg' %}" alt="Default Avatar" class="profile-image" style="width: 150px; height: 150px; object-fit: cover;">
+        </div>
+    {% endif %}
+</header>
+
+<div class="container mt-5">
+    <div class="d-flex align-items-center mb-4">
+        <div>
+            <h2>{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</h2>
+            <p><strong>Email:</strong> {{ user_profile.user.email }}</p>
+            <p><strong>Biografía:</strong> {{ user_profile.biography }}</p>
+        </div>
+    </div>
+
+    <a href="{% url 'create_post' %}" class="btn btn-primary mb-4">Crear publicación</a>
+
+<!-- Mostrar publicaciones -->
+{% for post in posts %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <p>{{ post.content }}</p>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Post Image" class="img-fluid">
+            {% endif %}
+            <p class="text-muted"><small>Publicado el {{ post.created_at }}</small></p>
+            <!-- Opciones de CRUD -->
+            <a href="{% url 'post_edit' post.id %}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </div>
+    </div>
+{% empty %}
+    <p>No tienes publicaciones aún.</p>
+{% endfor %}
+</div>
+<div class="container mt-5">
+    <br>
+</div>
+
+
+{% endblock %}
