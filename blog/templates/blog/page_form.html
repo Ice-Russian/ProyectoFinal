@@ -16,42 +16,64 @@
                         {% csrf_token %}
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.title.id_for_label }}">Título</label>
-                            <input type="text" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" class="form-control" value="{{ form.title.value }}" />
+                            {{ form.title.label_tag }}
+                            {{ form.title }}
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.subtitle.id_for_label }}">Subtítulo</label>
-                            <input type="text" name="{{ form.subtitle.name }}" id="{{ form.subtitle.id_for_label }}" class="form-control" value="{{ form.subtitle.value }}" />
+                            {{ form.subtitle.label_tag }}
+                            {{ form.subtitle }}
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.body.id_for_label }}">Cuerpo</label>
-                            <textarea name="{{ form.body.name }}" id="{{ form.body.id_for_label }}" class="form-control">{{ form.body.value }}</textarea>
+                            {{ form.body.label_tag }}
+                            {{ form.body }}
+                            <small id="body-warning" class="form-text text-danger d-none">El contenido es demasiado largo, no debe exceder los 4000 caracteres.</small>
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.author.id_for_label }}">Autor</label>
-                            <input type="text" name="{{ form.author.name }}" id="{{ form.author.id_for_label }}" class="form-control" value="{{ form.author.value }}" />
+                            {{ form.author.label_tag }}
+                            {{ form.author }}
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.date_created.id_for_label }}">Fecha de Creación</label>
-                            <input type="date" name="{{ form.date_created.name }}" id="{{ form.date_created.id_for_label }}" class="form-control" value="{{ form.date_created.value }}" />
+                            {{ form.date_created.label_tag }}
+                            {{ form.date_created }}
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.image.id_for_label }}">Imagen</label>
-                            <input type="file" name="{{ form.image.name }}" id="{{ form.image.id_for_label }}" class="form-control-file" />
+                            {{ form.image.label_tag }}
+                            {{ form.image }}
+                            <small class="form-text text-muted">Selecciona una imagen para el blog.</small>
                         </div>
                         
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="submit" class="btn btn-primary">Crear!</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+function checkLength(textarea) {
+    const maxLength = 4000;
+    const warning = document.getElementById('body-warning');
+    if (textarea.value.length > maxLength) {
+        warning.classList.remove('d-none');
+        textarea.classList.add('is-invalid');
+    } else {
+        warning.classList.add('d-none');
+        textarea.classList.remove('is-invalid');
+    }
+}
+</script>
+
+<div class="container mt-5">
+    <div class="container mt-5">
+        <br>
     </div>
 </div>
 {% endblock %}

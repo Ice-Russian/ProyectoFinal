@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}Editar Blog{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h2">Editar Blog</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <a href="{% url 'pages_list' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="container mt-5">
+        <br>
+    </div>
+</div>
+{% endblock %}
+
+

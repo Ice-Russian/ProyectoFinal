@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block titulo %}Detalle del Blog{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <h2>{{ blog.title }}</h2>
+    <h4>{{ blog.subtitle }}</h4>
+    <p>{{ blog.body }}</p>
+    
+    <img src="{{ blog.image.url }}" class="img-fluid" alt="{{ blog.title }}">
+    
+    <p><strong>Autor:</strong> {{ blog.author }}</p>
+    <p><strong>Fecha:</strong> {{ blog.date_created }}</p>
+    
+    {% if request.user == blog.author %}
+        <div class="mt-4">
+            <a href="{% url 'page_edit' blog.id %}" class="btn btn-primary">Editar</a>
+            <!-- Botón de eliminación con confirmación -->
+            <form action="{% url 'page_delete' blog.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este blog?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+<a href="{% url 'pages_list' %}" class="btn btn-secondary mt-3">Volver</a>
+<div class="container mt-5">
+    <div class="container mt-5">
+        <br>
+    </div>
+</div>
+{% endblock %}

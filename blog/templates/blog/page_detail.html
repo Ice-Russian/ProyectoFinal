@@ -1,15 +1,40 @@
 {% extends 'blog/base.html' %}
-
+{% load static %}
 {% block titulo %}Detalle del Blog{% endblock %}
 
 {% block main %}
 <div class="container mt-4">
-    <h2>{{ blog.title }}</h2>
-    <h4>{{ blog.subtitle }}</h4>
-    <p>{{ blog.body }}</p>
-    <p><strong>Autor:</strong> {{ blog.author }}</p>
-    <p><strong>Fecha:</strong> {{ blog.date_created }}</p>
-    <img src="{{ blog.image.url }}" class="img-fluid" alt="{{ blog.title }}">
-    <a href="{% url 'blog_list' %}" class="btn btn-secondary mt-3">Volver</a>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="h2">{{ blog.title }}</h2>
+            <h4 class="h4">{{ blog.subtitle }}</h4>
+        </div>
+        <div class="card-body">
+            <p>{{ blog.body }}</p>
+        
+            {% if blog.image %}
+                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="img-fluid mb-3">
+            {% else %}
+                <p class="text-muted">No image available.</p>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted">
+            <p><strong>Autor:</strong> {{ blog.author }}</p>
+            <p><strong>Fecha:</strong> {{ blog.date_created }}</p>
+        </div>
+    </div>
+    
+    {% if request.user == blog.author %}
+        <div class="mt-4">
+            <a href="{% url 'page_edit' blog.id %}" class="btn btn-primary">Editar</a>
+            <!-- Botón de eliminación con confirmación -->
+            <form action="{% url 'page_delete' blog.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este blog?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+        </div>
+    {% endif %}
+    
+    <a href="{% url 'pages_list' %}" class="btn btn-secondary mt-3">Volver</a>
 </div>
 {% endblock %}
