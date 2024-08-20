@@ -3,10 +3,55 @@
 {% block titulo %}Crear Blog{% endblock %}
 
 {% block main %}
-<h2>Crear un nuevo blog</h2>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Crear un Nuevo Blog</h2>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Formulario de Creación</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.title.id_for_label }}">Título</label>
+                            <input type="text" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" class="form-control" value="{{ form.title.value }}" />
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.subtitle.id_for_label }}">Subtítulo</label>
+                            <input type="text" name="{{ form.subtitle.name }}" id="{{ form.subtitle.id_for_label }}" class="form-control" value="{{ form.subtitle.value }}" />
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.body.id_for_label }}">Cuerpo</label>
+                            <textarea name="{{ form.body.name }}" id="{{ form.body.id_for_label }}" class="form-control">{{ form.body.value }}</textarea>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.author.id_for_label }}">Autor</label>
+                            <input type="text" name="{{ form.author.name }}" id="{{ form.author.id_for_label }}" class="form-control" value="{{ form.author.value }}" />
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.date_created.id_for_label }}">Fecha de Creación</label>
+                            <input type="date" name="{{ form.date_created.name }}" id="{{ form.date_created.id_for_label }}" class="form-control" value="{{ form.date_created.value }}" />
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.image.id_for_label }}">Imagen</label>
+                            <input type="file" name="{{ form.image.name }}" id="{{ form.image.id_for_label }}" class="form-control-file" />
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
