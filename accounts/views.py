@@ -5,7 +5,6 @@ from .forms import CustomUserCreationForm, UserProfileForm, UserForm, PostForm
 from .models import UserProfile, Post
 from django.contrib import messages
 
-
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST, request.FILES)
@@ -25,6 +24,7 @@ def register(request):
         form = CustomUserCreationForm()
     
     return render(request, 'accounts/register.html', {'form': form})
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -77,22 +77,9 @@ def register_success(request):
 @login_required
 def create_post(request):
     if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            return redirect('profile')
-    else:
-        form = PostForm()
-    return render(request, 'accounts/create_post.html', {'form': form})
-
-@login_required
-def create_post(request):
-    if request.method == 'POST':
         content = request.POST.get('content')
         image = request.FILES.get('image')
-        post = Post.objects.create(user=request.user, content=content, image=image)
+        post = Post.objects.create(user=request.user, content=content, media=image)
         return redirect('profile')
     return render(request, 'accounts/create_post.html')
 
@@ -100,13 +87,13 @@ def create_post(request):
 def edit_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, user=request.user)
     if request.method == 'POST':
-        post.content = request.POST.get('content')
-        if 'image' in request.FILES:
-            post.image = request.FILES['image']
-        post.save()
-        return redirect('profile')
-    return render(request, 'accounts/edit_post.html', {'post': post})
-
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'accounts/edit_post.html', {'form': form, 'post': post})
 @login_required
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id, user=request.user)

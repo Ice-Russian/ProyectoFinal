@@ -14,10 +14,10 @@ class UserProfile(models.Model):
         return self.user.username
     
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-    image = models.ImageField(upload_to='posts/', null=True, blank=True)
+    media = models.FileField(upload_to='post/', blank=True, null=True)  # Acepta imágenes y videos
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
-        return self.content
+        return self.content[:20]

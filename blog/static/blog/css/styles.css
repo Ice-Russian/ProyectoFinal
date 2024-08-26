@@ -11736,3 +11736,23 @@ textarea.form-control {
   opacity: 1;
   visibility: visible;
 }
+
+.content-text {
+  font-size: 1rem; /* Tamaño de fuente base */
+  line-height: 1.5; /* Espaciado entre líneas */
+  text-align: justify; /* Justifica el texto */
+}
+
+@media (max-width: 768px) {
+  .content-text {
+      font-size: 0.9rem; /* Ajusta el tamaño de fuente para pantallas más pequeñas */
+      line-height: 1.4;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-text {
+      font-size: 0.85rem; /* Tamaño aún más pequeño para pantallas extra pequeñas */
+      line-height: 1.3;
+  }
+}

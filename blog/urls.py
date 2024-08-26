@@ -21,7 +21,7 @@ urlpatterns = [
     path('pages/create/', page_create, name='page_create'),  # Crear nuevo blog
     path('blogpages/<int:pk>/delete/', PageDeleteView.as_view(), name='page_delete'),   # Borrar blog
     path('blogpages/<int:page_id>/', PageDetailView.as_view(), name='page_detail'),  # Detalle del blog
-    path('edit/<int:pk>/', PageUpdateView.as_view(), name='page_edit'),
+    path('edit/<int:pk>/', page_edit, name='page_edit'),
     path('success/', page_success, name='success'),
 
 ]

@@ -26,27 +26,37 @@
 
     <a href="{% url 'create_post' %}" class="btn btn-primary mb-4">Crear publicación</a>
 
-<!-- Mostrar publicaciones -->
-{% for post in posts %}
-    <div class="card mb-3">
-        <div class="card-body">
-            <p>{{ post.content }}</p>
-            {% if post.image %}
-                <img src="{{ post.image.url }}" alt="Post Image" class="img-fluid">
+    <!-- Mostrar publicaciones -->
+    {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p>{{ post.content }}</p>
+                {% if post.media %}
+                {% with post.media.url|slice:"-4:" as extension %}
+                    {% if extension == '.jpg' or extension == '.png' %}
+                        <img src="{{ post.media.url }}" alt="Post Media" class="img-fluid">
+                    {% elif extension == '.mp4' or extension == '.webm' %}
+                        <video controls class="img-fluid">
+                            <source src="{{ post.media.url }}" type="video/{{ extension|slice:'1:' }}">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% else %}
+                        <p>Archivo no compatible.</p>
+                    {% endif %}
+                {% endwith %}
             {% endif %}
-            <p class="text-muted"><small>Publicado el {{ post.created_at }}</small></p>
-            <!-- Opciones de CRUD -->
-            <a href="{% url 'post_edit' post.id %}" class="btn btn-warning btn-sm">Editar</a>
-            <a href="{% url 'post_delete' post.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                <p class="text-muted"><small>Publicado el {{ post.created_at }}</small></p>
+                <!-- Opciones de CRUD -->
+                <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
         </div>
-    </div>
-{% empty %}
-    <p>No tienes publicaciones aún.</p>
-{% endfor %}
+    {% empty %}
+        <p>No tienes publicaciones aún.</p>
+    {% endfor %}
 </div>
 <div class="container mt-5">
     <br>
 </div>
-
 
 {% endblock %}

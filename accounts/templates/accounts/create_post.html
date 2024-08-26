@@ -14,8 +14,8 @@
                     <textarea id="content" name="content" class="form-control" rows="4" placeholder="Escribe tu publicación aquí..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="image">Imagen (Opcional)</label>
-                    <input type="file" id="image" name="image" class="form-control-file">
+                    <label for="media">Imagen o Video (Opcional)</label>
+                    <input type="file" id="media" name="media" class="form-control-file" accept="image/*,video/*">
                 </div>
                 <button type="submit" class="btn btn-success">Publicar</button>
                 <a href="{% url 'profile' %}" class="btn btn-secondary">Cancelar</a>

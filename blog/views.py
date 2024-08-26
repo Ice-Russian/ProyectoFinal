@@ -4,6 +4,7 @@ from .models import Blog
 from blog.forms import BlogForm
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DeleteView, DetailView, UpdateView
+
 def inicio(request):
     return render(request, 'blog/index.html')
 
@@ -17,22 +18,24 @@ def page_create(request):
     if request.method == 'POST':
         form = BlogForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  
-            return redirect('success')  
+            form.save()
+            return redirect('success')
     else:
         form = BlogForm()
 
     return render(request, 'blog/page_form.html', {'form': form})
+
 class PageDetailView(DetailView):
     model = Blog
     template_name = 'blog/page_detail.html'
     context_object_name = 'blog'
     pk_url_kwarg = 'page_id'
+
 class PageUpdateView(UpdateView):
     model = Blog
     form_class = BlogForm
-    template_name = 'blog/page_edit.html'
-    success_url = '/success/' 
+    template_name = 'blog/blog_edit.html'
+    success_url = '/success/'
 
 def page_edit(request, pk):
     blog = get_object_or_404(Blog, pk=pk)
@@ -59,7 +62,6 @@ class PageDeleteView(DeleteView):
         pk = self.kwargs.get('pk')
         return get_object_or_404(Blog, pk=pk)
     
-
 def form_valid(self, form):
     form.save()
     return redirect(reverse('page_detail', kwargs={'page_id': self.object.id}))

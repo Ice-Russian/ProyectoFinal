@@ -1,14 +1,14 @@
 from django import forms
 from .models import Blog
-from django import forms
-from .models import Blog
 
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['title', 'subtitle', 'body', 'author', 'date_created', 'image']
-
+        fields = ['title', 'subtitle', 'content', 'image', 'video']
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 4, 'cols': 40}), 
-            'image': forms.ClearableFileInput(),
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'subtitle': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'video': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
         }
