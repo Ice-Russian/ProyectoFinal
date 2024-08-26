@@ -14,3 +14,6 @@ Usuarios creados:
 
      user: Abril98
      pass: Coder4281
+
+
+IMPORTANTE: Leer el AboutUs
