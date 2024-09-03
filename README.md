@@ -12,8 +12,12 @@ Usuarios creados:
      user: ArmandoBarreda
      pass: Coder4281
 
-     user: Abril98
+     user: MaruBotana
      pass: Coder4281
 
+SuperUsuarios:
 
-IMPORTANTE: Leer el AboutUs
+     user: admin
+     pass: administrador4281
+
+IMPORTANTE: Leer el AboutMe
