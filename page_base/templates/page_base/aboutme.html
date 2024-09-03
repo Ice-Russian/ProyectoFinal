@@ -18,12 +18,31 @@
                             <p>Este proyecto fue realizado por Simon Recofsky. Me estoy formando en la programacion Backend y por medios propios, a prueba y error estoy aprendiendo un poco de front. Para este proyecto tuve muchos problemas. realmente al principio no sabia de que hacer la pagina y no sabia como hacer el blog. al final lo procese en frio y de a poco fui dandole forma a la pagina. Soy consciente que hice varios commit fuera del tiempo de entrega pero tampoco queria entregar un trabajo demasiado incompleto. Tambien me di cuenta tarde que pedian que haga varias aplicaciones... una para registro otra para el login y etc. Por una cuestion de tiempo tuve que dejar todo en una aplicacion , haciendo una para el manejo de usuarios y perfiles y otra para los blogs ya que cuando me di cuenta como habia que hacerlo realmente era muy tarde y la pagina tenia muchos problemas y cosas que debia solucionar.</p>
                             <div class="container mt-5">
                             <h2>Informacion de la pagina</h2>
+                            <div class="container mt-5">
+                            <div class="container mt-5">
+                            <h2>Version 1.0</h2>
                             <p>Desarrolle 2 aplicaciones con Django para esta web. <br></p>
                             <h4>Accounts</h4>
                             <p>La primera es "accounts" esta aplicacion la utilice para administrar el login/logout , registro y perfiles de usuarios. Inicialmente la idea era que uno ingresando de una cuenta tambien pueda ver la cuenta de otro usuario, pero nuevamente por cuestion de tiempo no lo pude realizar, de todas maneras en cada perfil los usuarios pueden ademas de añadir una biografia y su foto de perfil estos pueden publicar post comentando sus gustos o cualquier cosa que quieran estos post pueden ser acompañador por una imagen o un video ademas de que los usuarios que crearon el post tienen la posibilidad de realizar un CRUD al post. </p>
                             <h4>Blog</h4>
                             <p>Esta segunda aplicacion llamada "blog" esta destinada para la administracion de los blog , esta aplicacion permite a los usuarios crear / publicar / editar blogs con el contenido que se desee. en esta aplicacion tambien se encuentra la base de la pagina , el about y la pagina de inicio.</p>
-                            
+                            <div class="container mt-5">
+                            <div class="container mt-5">
+                            <h2>Version 2.0 final</h2>
+                            <div class="container mt-5">
+                            <h2 class="mb-4">Actualización del Proyecto</h2>
+                            <p>Ahora, la estructura de las aplicaciones está mejor organizada: los "Posts", que antes estaban en la app de "accounts", han sido movidos a una nueva app llamada "Page_post", donde realmente pertenecen, como tambien desplace los templates "base" a una nueva aplicion llamada "Page_Base" que almacena los templates "base.html", "about.html" y "index.html". Esto facilita el mantenimiento y hace que el proyecto tenga más sentido. También corregimos los problemas con la herencia de plantillas, enlaces y botones sin acciones. La vista "About" ya está incluida, y todas las vistas para listar datos de la base de datos funcionan correctamente.</p>
+                            <h3>Correcciones Realizadas</h3>
+                            <ul>
+                                <li>Las vistas ahora funcionan como deberían, permitiendo crear, visualizar, eliminar y actualizar blogs sin problemas.</li>
+                                <li>Se implementaron permisos y accesos según los diferentes tipos de usuarios.</li>
+                                <li>Ya se pueden ver correctamente el contenido multimedia y los posts creados por usuarios activos.</li>
+                                <li>Solucionamos el problema con la imagen del avatar de usuario.</li>
+                                <li>Configuramos los modelos para que sean gestionados sin inconvenientes desde el panel de administración de Django.</li>
+                            </ul>
+                                
+                            <p>Finalmente, hemos añadido el archivo de Excel con las pruebas y el video que muestra el funcionamiento del proyecto.</p>
+                        </div>
                     </tr>
             </tbody>
     </table>

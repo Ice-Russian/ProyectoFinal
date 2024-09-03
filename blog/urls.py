@@ -7,6 +7,7 @@ from blog.views import (
             page_delete,
             page_detail,
 
+
 )
 
 urlpatterns = [
