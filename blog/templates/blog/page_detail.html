@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'page_base/base.html' %}
 {% load static %}
 {% block titulo %}Detalle del Blog{% endblock %}
 
@@ -19,6 +19,15 @@
             {% else %}
                 <p class="text-muted">No image available.</p>
             {% endif %}
+
+            {% if blog.video %}
+                <video controls class="w-100 mt-3">
+                    <source src="{{ blog.video.url }}" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            {% else %}
+                <p class="text-muted">No video available.</p>
+            {% endif %}
         </div>        
         <div class="card-footer text-muted">
             <p><strong>Autor:</strong> {{ blog.author }}</p>
@@ -26,17 +35,16 @@
         </div>
     </div>
     
-    {% if request.user == blog.author %}
+    {% if request.user == blog.author or request.user.is_superuser %}
         <div class="mt-4">
             <a href="{% url 'page_edit' blog.id %}" class="btn btn-primary">Editar</a>
-            <!-- Botón de eliminación con confirmación -->
-            <form action="{% url 'page_delete' blog.id %}" method="post" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este blog?');">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
+            <a href="{% url 'page_delete' blog.id %}" class="btn btn-danger">Eliminar</a>
         </div>
     {% endif %}
     
     <a href="{% url 'pages_list' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+<div class="container mt-5">
+    <br>
 </div>
 {% endblock %}

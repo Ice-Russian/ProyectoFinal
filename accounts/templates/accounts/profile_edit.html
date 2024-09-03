@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'page_base/base.html' %}
 {% load form_tags %}
 {% load static %}
 {% block main %}
@@ -57,32 +57,14 @@
                 <!-- Campos del Perfil del Usuario -->
                 <div class="form-group">
                     <label for="{{ profile_form.profile_image.id_for_label }}">Imagen de Perfil</label>
+                    {% if user.profile.profile_image %}
+                        <div class="mt-3">
+                            <img src="{{ user.profile.profile_image.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 150px;">
+                            <p><small>Deja este campo vacío si no deseas cambiar la imagen.</small></p>
+                        </div>
+                    {% endif %}
                     {{ profile_form.profile_image|add_class:"form-control-file" }}
-                    {% if profile_form.profile_image.value %}
-                        <div class="mt-3">
-                            <img src="{{ profile_form.profile_image.value.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 150px;">
-                        </div>
-                    {% endif %}
                     {% for error in profile_form.profile_image.errors %}
-                        <div class="alert alert-danger mt-2" role="alert">
-                            {{ error }}
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <!-- Nuevo campo para Video de Perfil -->
-                <div class="form-group">
-                    <label for="{{ profile_form.profile_video.id_for_label }}">Video de Perfil</label>
-                    {{ profile_form.profile_video|add_class:"form-control-file" }}
-                    {% if profile_form.profile_video.value %}
-                        <div class="mt-3">
-                            <video controls class="img-thumbnail" style="max-width: 300px;">
-                                <source src="{{ profile_form.profile_video.value.url }}" type="video/mp4">
-                                Tu navegador no soporta la reproducción de videos.
-                            </video>
-                        </div>
-                    {% endif %}
-                    {% for error in profile_form.profile_video.errors %}
                         <div class="alert alert-danger mt-2" role="alert">
                             {{ error }}
                         </div>

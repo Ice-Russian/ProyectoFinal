@@ -1,7 +1,11 @@
-{% extends 'blog/base.html' %}
+{% extends 'page_base/base.html' %}
 {% load static %}
 {% block main %}
-    <h1>Blog</h1>
+<section  id="service" class="section pt-0">
+    <div class="container">
+        <h1 class="section-title text-center">Blogs</h1>
+        <h6 class="section-subtitle text-center mb-5 pb-3">Ultimas publicaciones:</h6>
+    </div>
     {% if blogs %}
         <div class="container">
             <div class="row">
@@ -32,9 +36,15 @@
                 {% endfor %}
             </div>
         </div>
-        <a href="{% url 'page_create' %}" class="btn btn-success mt-4">Crear un Nuevo blog</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'page_create' %}" class="btn btn-success mt-4">Crear un Nuevo blog</a>
+        {% endif %}
     {% else %}
-        <p>No hay páginas aún. Puedes <a href="{% url 'page_create' %}">crear una nueva página</a>.</p>
+        <p>No hay páginas aún. 
+        {% if user.is_authenticated %}
+            Puedes <a href="{% url 'page_create' %}">crear una nueva página</a>.
+        {% endif %}
+        </p>
     {% endif %}
 
     <div class="container mt-5">
@@ -43,3 +53,4 @@
         </div>
     </div>
 {% endblock %}
+

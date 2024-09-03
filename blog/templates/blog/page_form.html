@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'page_base/base.html' %}
 
 {% block titulo %}Crear Blog{% endblock %}
 
@@ -26,16 +26,10 @@
                         </div>
                         
                         <div class="form-group mb-3">
-                            {{ form.body.label_tag }}
-                            {{ form.body }}
+                            {{ form.content.label_tag }}
+                            {{ form.content }}
                             <small id="body-warning" class="form-text text-danger d-none">El contenido es demasiado largo, no debe exceder los 4000 caracteres.</small>
                         </div>
-                        
-                        <div class="form-group mb-3">
-                            {{ form.author.label_tag }}
-                            {{ form.author }}
-                        </div>
-                        
                         <div class="form-group mb-3">
                             {{ form.date_created.label_tag }}
                             {{ form.date_created }}

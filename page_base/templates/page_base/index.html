@@ -1,0 +1,35 @@
+{% extends 'page_base/base.html' %}
+{% load static %}
+{% block titulo %}CoderHouse | Inicio{% endblock %}
+
+{% block main %}
+    <section id="service" class="section pt-0 bg-light">
+        <div class="container">
+            <h6 class="section-title text-center text-primary">Inicio</h6>
+            <h6 class="section-subtitle text-center mb-5 pb-3">Una pequeña presentación</h6>
+        </div>
+        <hr class="my-4">
+
+        <div class="container">
+            {% if user.is_authenticated %}
+                <div class="text-center mb-4">
+                    <h3 class="display-4 text-primary">¡Bienvenido, {{ user.username }}!</h3>
+                    <p class="lead text-muted">Explora los blogs y participa en la comunidad.</p>
+                </div>
+            {% else %}
+                <div class="text-center mb-4">
+                    <h3 class="display-4 text-primary">¡Bienvenido a nuestra web!</h3>
+                    <p class="lead text-muted">Bienvenido a mi primer proyecto de PYTHON! En esta web podrás publicar blogs de lo que quieras.</p>
+                </div>
+                <div class="text-center">
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-lg mx-2">Iniciar Sesión</a>
+                    <a href="{% url 'register' %}" class="btn btn-secondary btn-lg mx-2">Registrarse</a>
+                </div>
+                <hr class="my-4">
+                <div class="text-center mt-4">
+                    <h3 class="text-primary">¡Inicia sesión para comenzar!</h3>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

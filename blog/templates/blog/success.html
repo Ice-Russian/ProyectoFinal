@@ -1,0 +1,17 @@
+{% extends 'page_base/base.html' %}
+
+{% block main %}
+<div class="container mt-5">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">¡Operación exitosa!</h4>
+        <p>La acción se ha completado con éxito. Puedes continuar navegando en el sitio o volver a la página principal.</p>
+        <hr>
+        <p class="mb-0">¿Deseas regresar a la <a href="{% url 'pages_list' %}">lista de publicasiones?</a> o visitar tu <a href="{% url 'profile' %}">perfil</a>?</p>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="container mt-5">
+        <br>
+    </div>
+</div>
+{% endblock %}

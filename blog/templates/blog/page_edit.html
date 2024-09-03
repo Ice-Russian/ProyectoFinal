@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'page_base/base.html' %}
 
 {% block titulo %}Editar Blog{% endblock %}
 {% load blog_form_tags %}
@@ -50,9 +50,9 @@
                 <div class="form-group">
                     <label for="{{ form.image.id_for_label }}" class="form-label">Imagen</label>
                     {{ form.image|add_class:"form-control-file" }}
-                    {% if form.image.value %}
+                    {% if form.instance.image %}
                         <div class="mt-3">
-                            <img src="{{ form.image.value.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 300px;">
+                            <img src="{{ form.instance.image.url }}" alt="Imagen actual" class="img-thumbnail" style="max-width: 300px;">
                         </div>
                     {% endif %}
                     {% for error in form.image.errors %}
@@ -66,10 +66,10 @@
                 <div class="form-group">
                     <label for="{{ form.video.id_for_label }}" class="form-label">Video</label>
                     {{ form.video|add_class:"form-control-file" }}
-                    {% if form.video.value %}
+                    {% if form.instance.video %}
                         <div class="mt-3">
                             <video controls class="img-thumbnail" style="max-width: 300px;">
-                                <source src="{{ form.video.value.url }}" type="video/mp4">
+                                <source src="{{ form.instance.video.url }}" type="video/mp4">
                                 Tu navegador no soporta la reproducción de videos.
                             </video>
                         </div>
@@ -95,6 +95,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-

@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import UserProfile, Post
+from .models import UserProfile
 
 class CustomUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(widget=forms.PasswordInput())
@@ -37,11 +36,3 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['profile_image', 'biography']
 
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['content', 'media']
-        widgets = {
-            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'media': forms.ClearableFileInput(attrs={'class': 'form-control-file', 'accept': 'image/*,video/*'}),
-        }

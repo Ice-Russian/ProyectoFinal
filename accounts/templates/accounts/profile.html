@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'page_base/base.html' %}
 {% load static %}
 {% block main %}
 
@@ -10,7 +10,7 @@
         </div>
     {% else %}
         <div class="mr-4">
-            <img src="{% static 'admin_user/assets/imgs/default-avatar.jpg' %}" alt="Default Avatar" class="profile-image" style="width: 150px; height: 150px; object-fit: cover;">
+            <img src="{% static 'blog/assets/imgs/default-avatar.jpg' %}" alt="Profile Image" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
         </div>
     {% endif %}
 </header>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <a href="{% url 'create_post' %}" class="btn btn-primary mb-4">Crear publicación</a>
+    <a href="{% url 'create_post' %}" class="btn btn-primary mb-4">Crear nueva publicación</a>
 
     <!-- Mostrar publicaciones -->
     {% for post in posts %}
@@ -32,19 +32,19 @@
             <div class="card-body">
                 <p>{{ post.content }}</p>
                 {% if post.media %}
-                {% with post.media.url|slice:"-4:" as extension %}
-                    {% if extension == '.jpg' or extension == '.png' %}
-                        <img src="{{ post.media.url }}" alt="Post Media" class="img-fluid">
-                    {% elif extension == '.mp4' or extension == '.webm' %}
-                        <video controls class="img-fluid">
-                            <source src="{{ post.media.url }}" type="video/{{ extension|slice:'1:' }}">
-                            Your browser does not support the video tag.
-                        </video>
-                    {% else %}
-                        <p>Archivo no compatible.</p>
-                    {% endif %}
-                {% endwith %}
-            {% endif %}
+                    {% with post.media.url|slice:"-4:" as extension %}
+                        {% if extension == '.jpg' or extension == '.png' %}
+                            <img src="{{ post.media.url }}" alt="Post Media" class="img-fluid">
+                        {% elif extension == '.mp4' or extension == '.webm' %}
+                            <video controls class="img-fluid">
+                                <source src="{{ post.media.url }}" type="video/{{ extension|slice:'1:' }}">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% else %}
+                            <p>Archivo no compatible.</p>
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
                 <p class="text-muted"><small>Publicado el {{ post.created_at }}</small></p>
                 <!-- Opciones de CRUD -->
                 <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm">Editar</a>
@@ -54,9 +54,6 @@
     {% empty %}
         <p>No tienes publicaciones aún.</p>
     {% endfor %}
-</div>
-<div class="container mt-5">
-    <br>
 </div>
 
 {% endblock %}
